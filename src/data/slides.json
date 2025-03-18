@@ -1,0 +1,42 @@
+[
+  {
+    "id": 1,
+    "title": "Come & Capture the Breathtaking Spirit of India",
+    "description": "Immerse Yourself in her Vibrant Energy!",
+    "image": "https://images.unsplash.com/photo-1650709244890-cc35b30d8036?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "link": "#",
+    "location": "Rajasthan"
+  },
+  {
+    "id": 2,
+    "title": "Feel the Divine Aura of Haridwar",
+    "description": "Witness the Ganga Aarti and Seek Spiritual Bliss!",
+    "image": "https://images.unsplash.com/photo-1599831069477-b2acdc0bcb91?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "link": "#",
+    "location": "Haridwar"
+  },
+  {
+    "id": 3,
+    "title": "Discover the Historic Charm of Delhi",
+    "description": "Explore the Heart of India with its Rich Heritage!",
+    "image": "https://images.unsplash.com/photo-1595928607828-6fdaee9c0942?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "link": "#",
+    "location": "Delhi"
+  },
+  {
+    "id": 4,
+    "title": "Experience the Cultural Tapestry of Gujarat",
+    "description": "From Gir Lions to Vibrant Festivals, Feel the Essence of Gujarat!",
+    "image": "https://images.unsplash.com/photo-1593844311291-2ec0164643c8?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "link": "#",
+    "location": "Gujarat"
+  },
+  {
+    "id": 5,
+    "title": "Feel the Pulse of Mumbai",
+    "description": "The City that Never Sleeps – Explore its Energy and Glamour!",
+    "image": "https://images.unsplash.com/photo-1574565087163-11e46ca637a6?q=80&w=1942&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "link": "#",
+    "location": "Mumbai"
+  }
+]
