@@ -1,5 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Playfair:ital,opsz,wght@0,5..1200,300..900;1,5..1200,300..900&display=swap');
-
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Playfair:ital,opsz,wght@0,5..1200,300..900;1,5..1200,300..900&display=swap");
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -14,6 +13,28 @@
   font-family: "Playfair", serif;
   font-optical-sizing: auto;
   font-style: normal;
+}
+
+.montserrat {
+  font-family: "Montserrat", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+}
+
+.playfairDisplay {
+  font-family: "Playfair", serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+}
+
+.mesh1 {
+  background-color: hsla(225, 75%, 12%, 1);
+  background-image: radial-gradient(
+      at 56% 18%,
+      hsla(232, 70%, 21%, 1) 0px,
+      transparent 50%
+    ),
+    radial-gradient(at 27% 77%, hsla(240, 71%, 28%, 1) 0px, transparent 50%);
 }
 
 @layer base {
