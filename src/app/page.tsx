@@ -3,6 +3,7 @@ import Navbar from "@/components/navbar";
 import About from "@/components/about";
 import Experiences from "@/components/experiences";
 import Journeys from "@/components/journeys";
+import Quote from "@/components/quote";
 export default function Home() {
   return (
     <>
@@ -11,6 +12,7 @@ export default function Home() {
       <About />
       <Experiences />
       <Journeys />
+      <Quote />
     </>
   );
 }
