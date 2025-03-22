@@ -4,6 +4,8 @@ import About from "@/components/about";
 import Experiences from "@/components/experiences";
 import Journeys from "@/components/journeys";
 import Quote from "@/components/quote";
+import { MarqueeSlider } from "@/components/marquee";
+import { Footer } from "@/components/footer";
 export default function Home() {
   return (
     <>
@@ -13,6 +15,8 @@ export default function Home() {
       <Experiences />
       <Journeys />
       <Quote />
+      <MarqueeSlider />
+      <Footer />
     </>
   );
 }
