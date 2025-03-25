@@ -258,7 +258,7 @@ const BlogArchive: React.FC = () => {
                         {searchResults.map((post) => (
                           <Link
                             key={post._id}
-                            href={`/blog/${post.slug}`}
+                            href={`/blogs/${post.slug}`}
                             className="flex items-start gap-3 p-3 hover:bg-blue-50 border-b last:border-0"
                             onClick={() => setShowSearchResults(false)}
                           >
@@ -304,9 +304,6 @@ const BlogArchive: React.FC = () => {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
           <div className="grid grid-cols-1 lg:grid-cols-4 gap-8 lg:gap-12">
             <div className="lg:col-span-3">
-              <h2 className="text-3xl font-bold mb-8 text-blue-900">
-                Latest Expeditions
-              </h2>
               <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3 mb-12">
                 {filteredPosts.slice(0, displayedPosts).map((post, index) => (
                   <motion.div
@@ -316,7 +313,7 @@ const BlogArchive: React.FC = () => {
                     transition={{ duration: 0.5, delay: index * 0.1 }}
                   >
                     <Link
-                      href={`/blog/${post.slug}`}
+                      href={`/blogs/${post.slug}`}
                       className="group block h-full"
                     >
                       <article className="h-full flex flex-col overflow-hidden rounded-2xl border border-blue-100 bg-white hover:shadow-xl hover:-translate-y-2 transition-all duration-300">
@@ -386,9 +383,6 @@ const BlogArchive: React.FC = () => {
             </div>
 
             <div className="lg:col-span-1">
-              <h2 className="text-xl font-bold mb-6 pb-3 border-b border-blue-200 text-blue-900">
-                Hot Spots
-              </h2>
               <div className="space-y-6">
                 {getFeaturedPosts().map((post, index) => (
                   <motion.div
@@ -398,7 +392,7 @@ const BlogArchive: React.FC = () => {
                     transition={{ duration: 0.5, delay: 0.2 + index * 0.1 }}
                   >
                     <Link
-                      href={`/blog/${post.slug}`}
+                      href={`/blogs/${post.slug}`}
                       className="group flex gap-4 items-start hover:bg-blue-50 p-3 rounded-lg transition-colors -mx-3"
                     >
                       <div className="relative h-16 w-16 flex-shrink-0 rounded-md overflow-hidden">
@@ -434,7 +428,7 @@ const BlogArchive: React.FC = () => {
                 ))}
               </div>
 
-              <div className="mt-10 pt-8 border-t border-blue-200">
+              <div className="mt-10">
                 <h3 className="text-lg font-semibold mb-4 text-blue-900">
                   Explore by Category
                 </h3>

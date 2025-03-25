@@ -5,6 +5,7 @@ import Experiences from "@/components/experiences";
 import Journeys from "@/components/journeys";
 import Quote from "@/components/quote";
 import { MarqueeSlider } from "@/components/marquee";
+import Prefooter from "@/components/prefooter";
 import { Footer } from "@/components/footer";
 export default function Home() {
   return (
@@ -15,6 +16,7 @@ export default function Home() {
       <Experiences />
       <Journeys />
       <Quote />
+      <Prefooter />
       <MarqueeSlider />
       <Footer />
     </>

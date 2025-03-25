@@ -12,8 +12,8 @@ import { MdOutlineArrowRight } from "react-icons/md";
 const navLinks = [
   { name: "About", href: "/" },
   { name: "Travel Experiences", href: "/destinations" },
-  { name: "Testimonials", href: "/blog" },
-  { name: "Blog", href: "/about" },
+  { name: "Testimonials", href: "/#testimonials" },
+  { name: "Blog", href: "/blogs" },
   { name: "Contact", href: "/contact" }
 ];
 

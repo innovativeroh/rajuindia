@@ -1,0 +1,200 @@
+@import url("https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap");
+
+/* Effect Layer for Color Dynamics */
+.effect {
+  --start: 0;
+  --end: 360;
+  --lightness: 65%;
+  --base-chroma: 0.3;
+}
+
+.effect ul {
+  --step: calc((var(--end) - var(--start)) / (var(--count) - 1));
+}
+
+.effect li {
+  color: oklch(
+    var(--lightness) var(--base-chroma)
+      calc(var(--start) + (var(--step) * var(--i)))
+  );
+}
+
+.effect li:nth-child(1) { color: rgb(204, 0, 0); }     /* vibrant - Dark Red */
+.effect li:nth-child(2) { color: rgb(204, 51, 0); }    /* diverse - Dark Red-Orange */
+.effect li:nth-child(3) { color: rgb(204, 102, 0); }   /* cultural - Dark Orange */
+.effect li:nth-child(4) { color: rgb(204, 153, 0); }   /* spiritual - Dark Yellow-Orange */
+.effect li:nth-child(5) { color: rgb(204, 204, 0); }   /* colorful - Dark Yellow */
+.effect li:nth-child(6) { color: rgb(153, 204, 0); }   /* historic - Dark Yellow-Green */
+.effect li:nth-child(7) { color: rgb(102, 204, 0); }   /* traditional - Dark Light Green */
+.effect li:nth-child(8) { color: rgb(51, 204, 0); }    /* festive - Dark Green */
+.effect li:nth-child(9) { color: rgb(0, 204, 0); }     /* enchanting - Dark Pure Green */
+.effect li:nth-child(10) { color: rgb(0, 204, 51); }   /* majestic - Dark Green-Cyan */
+.effect li:nth-child(11) { color: rgb(0, 204, 102); }  /* architectural - Dark Cyan */
+.effect li:nth-child(12) { color: rgb(0, 204, 153); }  /* dynamic - Dark Light Cyan */
+.effect li:nth-child(13) { color: rgb(0, 204, 204); }  /* flourishing - Dark Cyan-Blue */
+.effect li:nth-child(14) { color: rgb(0, 153, 204); }  /* exotic - Dark Light Blue */
+.effect li:nth-child(15) { color: rgb(0, 102, 204); }  /* timeless - Dark Blue */
+.effect li:nth-child(16) { color: rgb(0, 51, 204); }   /* sacred - Dark Deep Blue */
+.effect li:nth-child(17) { color: rgb(0, 0, 204); }    /* heritage-rich - Dark Pure Blue */
+.effect li:nth-child(18) { color: rgb(51, 0, 204); }   /* mythical - Dark Blue-Purple */
+.effect li:nth-child(19) { color: rgb(102, 0, 204); }  /* inviting - Dark Purple */
+.effect li:nth-child(20) { color: rgb(153, 0, 204); }  /* breathtaking - Dark Magenta */
+.effect li:nth-child(21) { color: rgb(204, 0, 204); }  /* spectacular - Dark Pink */
+.effect li:nth-child(22) { color: rgb(204, 0, 102); }  /* soulful - Dark Pink-Red */
+
+/* Sticky Layer for Layout */
+.stick {
+  --font-level: 6;
+  display: flex;
+  line-height: 1.25;
+  width: 90%;
+  max-width: 1200px;
+  padding-left: clamp(1rem, 4vw, 5rem);
+  margin: 0 auto;
+}
+
+.heightFixer {
+  min-height: 30vh;
+  display: flex;
+  place-items: center;
+  width: 100%;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.heightFixer h2 {
+  --font-level: 6;
+}
+
+.stick h2 {
+  position: sticky;
+  top: calc(50% - 0.5lh);
+  font-size: inherit;
+  margin: 0;
+  display: inline-block;
+  height: fit-content;
+  font-weight: 600;
+}
+
+.stick ul {
+  font-weight: 600;
+  padding-inline: 0;
+  margin: 0;
+  list-style-type: none;
+}
+
+.stick[data-snap="true"] {
+  scroll-snap-type: y proximity;
+}
+
+.stick[data-snap="true"] li {
+  scroll-snap-align: center;
+}
+
+.gradientText,
+.lastLi {
+  background: -webkit-linear-gradient(rgb(29, 12, 30), rgb(156, 25, 110));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Demo Layer for Text Containers */
+.mainTextContainer {
+  min-height: 40vh;
+  display: flex;
+  place-items: center;
+  width: 90%;
+  max-width: 1200px;
+  padding-inline: clamp(1rem, 4vw, 5rem);
+  margin: 0 auto;
+}
+
+.mainTitle {
+  --font-size-min: 18; /* Reduced for mobile */
+  --font-level: 8;
+  text-wrap: pretty;
+  margin: 0;
+  line-height: 0.8;
+  background: -webkit-linear-gradient(rgb(0, 0, 0), rgb(202, 10, 106));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.text {
+  --text-min: calc(
+    var(--font-size-min) * pow(var(--font-ratio-min), var(--font-level, 0))
+  );
+  --text-max: calc(
+    var(--font-size-max) * pow(var(--font-ratio-max), var(--font-level, 0))
+  );
+  --text-preferred: calc(
+    (var(--text-max) - var(--text-min)) /
+      (var(--font-width-max) - var(--font-width-min))
+  );
+  --text-type: clamp(
+    (var(--text-min) / 16) * 1rem,
+    ((var(--text-min) / 16) * 1rem) -
+      (((var(--text-preferred) * var(--font-width-min)) / 16) * 1rem) +
+      (var(--text-preferred) * var(--variable-unit, 100vi)),
+    (var(--text-max) / 16) * 1rem
+  );
+  font-size: var(--text-type);
+}
+
+.body {
+  display: grid;
+  place-items: center;
+  background: #fff;
+  min-height: 100vh;
+  font-family:
+    "Geist", "SF Pro Text", "SF Pro Icons", "AOS Icons", "Helvetica Neue",
+    Helvetica, Arial, sans-serif, system-ui;
+  padding: 1rem;
+}
+
+.smallText {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 768px) {
+  .stick {
+    flex-direction: column;
+    padding-left: 2rem;
+  }
+
+  .mainTextContainer {
+    padding-inline: 2rem;
+  }
+
+  .mainTitle {
+    --font-size-min: 16;
+    line-height: 1;
+  }
+
+  .heightFixer {
+    min-height: 20vh;
+  }
+}
+
+@media (max-width: 480px) {
+  .stick {
+    padding-left: 1rem;
+  }
+
+  .mainTextContainer {
+    padding-inline: 1rem;
+  }
+
+  .mainTitle {
+    --font-size-min: 14;
+  }
+}
