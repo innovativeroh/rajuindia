@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useEffect, useRef } from "react";
-import { Pane } from "tweakpane";
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
 import styles from '@/app/styles.module.css';
@@ -15,37 +14,6 @@ interface Config {
   end: number;
   scroll: boolean;
   debug: boolean;
-}
-
-interface TweakpaneChangeEvent {
-  target: {
-    controller: {
-      view: {
-        labelElement: {
-          innerText: string;
-        };
-      };
-    };
-  };
-}
-
-interface TweakpanePane {
-  addBinding: (
-    target: Config,
-    property: keyof Config,
-    options?: {
-      label?: string;
-      min?: number;
-      max?: number;
-      step?: number;
-      options?: Record<string, Config['theme']>;
-    }
-  ) => void;
-  on: (
-    event: 'change',
-    callback: (ev: TweakpaneChangeEvent) => void
-  ) => void;
-  dispose: () => void;
 }
 
 const IndiaDescriptionPage: React.FC = () => {
@@ -73,11 +41,6 @@ const IndiaDescriptionPage: React.FC = () => {
       scroll: true,
       debug: false,
     };
-
-    const ctrl = new Pane({
-      title: "Configuration",
-      expanded: false
-    }) as unknown as TweakpanePane;
 
     let items: HTMLElement[] = [];
     let scrollerScrub: ScrollTrigger | undefined;
@@ -124,44 +87,7 @@ const IndiaDescriptionPage: React.FC = () => {
       }
     };
 
-    // Synchronization with view transitions
-    const sync = (event: TweakpaneChangeEvent) => {
-      if (
-        !document.startViewTransition ||
-        event.target.controller.view.labelElement.innerText !== "Theme"
-      ) {
-        return update();
-      }
-      document.startViewTransition(() => update());
-    };
 
-    // Tweakpane Configuration Bindings
-    ctrl.addBinding(config, "animate", { label: "Animate" });
-    ctrl.addBinding(config, "snap", { label: "Snap" });
-    ctrl.addBinding(config, "start", {
-      label: "Hue Start",
-      min: 0,
-      max: 1000,
-      step: 1
-    });
-    ctrl.addBinding(config, "end", {
-      label: "Hue End",
-      min: 0,
-      max: 1000,
-      step: 1
-    });
-    ctrl.addBinding(config, "scroll", { label: "Scrollbar" });
-    ctrl.addBinding(config, "debug", { label: "Debug" });
-    ctrl.addBinding(config, "theme", {
-      label: "Theme",
-      options: {
-        System: "system",
-        Light: "light",
-        Dark: "dark"
-      },
-    });
-
-    ctrl.on("change", sync);
 
     // Fallback for browsers without native scroll timeline support
     if (!CSS.supports("(animation-timeline: scroll()) and (animation-range: 0% 100%)")) {
@@ -233,7 +159,6 @@ const IndiaDescriptionPage: React.FC = () => {
 
     // Cleanup function
     return () => {
-      ctrl.dispose();
       scrollerScrub?.kill();
       dimmerScrub?.kill();
       chromaEntry?.kill();

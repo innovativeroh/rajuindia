@@ -101,7 +101,7 @@ const TestimonialCard = ({
       whileHover={{ y: -8, scale: 1.02 }}
       transition={{ type: "spring", stiffness: 300, damping: 20 }}
       className={cn(
-        "relative h-auto lg:w-[420px] mx-4 rounded-2xl border bg-white dark:bg-gray-900/90",
+        "relative h-auto lg:w-[420px] w-[380px] mx-4 rounded-2xl border bg-white dark:bg-gray-900/90",
         "border-gray-100 dark:border-gray-800 shadow-lg overflow-hidden backdrop-blur-sm",
         "transition-all duration-300 hover:shadow-xl hover:border-primary/20 dark:hover:border-primary/20"
       )}

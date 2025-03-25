@@ -409,7 +409,7 @@ export default function HeroSlider({
           {/* Navigation arrows */}
           <motion.button
             onClick={prevSlide}
-            className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white/20 backdrop-blur-sm hover:bg-white/30 rounded-full p-2 text-white transition-colors"
+            className="absolute left-4 top-1/2 hidden lg:block transform -translate-y-1/2 bg-white/20 backdrop-blur-sm hover:bg-white/30 rounded-full p-2 text-white transition-colors"
             whileHover={{ scale: 1.1, x: -2 }}
             whileTap={{ scale: 0.9 }}
             aria-label="Previous slide"
@@ -418,7 +418,7 @@ export default function HeroSlider({
           </motion.button>
           <motion.button
             onClick={nextSlide}
-            className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white/20 backdrop-blur-sm hover:bg-white/30 rounded-full p-2 text-white transition-colors"
+            className="absolute right-4 top-1/2 hidden lg:block transform -translate-y-1/2 bg-white/20 backdrop-blur-sm hover:bg-white/30 rounded-full p-2 text-white transition-colors"
             whileHover={{ scale: 1.1, x: 2 }}
             whileTap={{ scale: 0.9 }}
             aria-label="Next slide"

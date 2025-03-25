@@ -8,30 +8,30 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 const about = () => {
   return (
-    <div className="m-auto max-w-[1150px] p-20 relative">
+    <div className="m-auto max-w-[1150px] p-10 lg:p-20 relative">
       <Image
         src={HalfCircle}
         alt="Half Circle"
-        className="absolute left-[-160px] w-[300px]"
+        className="absolute left-[-160px] w-[300px] hidden lg:block"
       />
 
       <Image
         src={Img1}
         alt="Half Circle"
-        className="absolute right-[-60px] w-[300px] rounded-full"
+        className="absolute right-[-60px] w-[300px] rounded-full hidden lg:block"
       />
       <Image
         src={Img2}
         alt="Half Circle"
-        className="absolute right-[-50px] w-[200px] top-[450px] rounded-full"
+        className="absolute right-[-50px] w-[200px] top-[450px] rounded-full hidden lg:block"
       />
       <Image
         src={Img3}
         alt="Half Circle"
-        className="absolute right-[-180px] w-[150px] top-[330px] rounded-full"
+        className="absolute right-[-180px] w-[150px] top-[330px] rounded-full hidden lg:block"
       />
 
-      <div className="max-w-[640px] m-auto p-10">
+      <div className="max-w-[640px] m-auto lg:p-10">
         <h1 className="font-extrabold playfair text-5xl text-blue-900">
           &quot;Padharo Mhare Desh&quot;
         </h1>

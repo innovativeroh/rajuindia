@@ -16,7 +16,9 @@ export default function Home() {
       <Experiences />
       <Journeys />
       <Quote />
+      <div className="lg:block hidden">
       <Prefooter />
+      </div>
       <MarqueeSlider />
       <Footer />
     </>

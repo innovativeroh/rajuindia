@@ -115,97 +115,97 @@ export default function Experiences(): JSX.Element {
             className="w-full opacity-100" // Optional: Adjust opacity or styling
           />
         </div>
+        <div className="p-10">
+          <Carousel
+            className="w-full max-w-[1300px] mx-auto relative z-10" // Ensure carousel stays above the background image
+            opts={{
+              align: "start",
+              loop: true // Enable infinite scroll
+            }}
+            setApi={(api) => setEmblaRef(api ?? null)}
+          >
+            <div className="text-center pb-10">
+              <h1 className="text-white text-4xl lg:text-6xl playfair font-extrabold">
+                Travel Experiences
+              </h1>
+              <p className="text-white montserrat mt-2 text-sm lg:text-md font-light">
+                Curated Journeys, Destinations & Festivals to immerse yourself
+                into a unique, unforgettable India
+              </p>
+              <h1 className="text-white mt-8 playfairDisplay text-xl lg:text-3xl font-bold">
+                Come & Let India Touch Your Soul & Awake Your Senses!
+              </h1>
+            </div>
+            <CarouselContent className="-ml-4">
+              {items.map((item: ExperienceItem) => (
+                <CarouselItem
+                  key={item.id}
+                  className="pl-4 md:basis-1/2 lg:basis-1/3"
+                >
+                  <div className="p-1">
+                    <Card
+                      className="overflow-hidden rounded-none border-none"
+                      onMouseEnter={() => setIsHovered(item.id)}
+                      onMouseLeave={() => setIsHovered(null)}
+                    >
+                      <CardContent className="relative p-0 h-[460px]">
+                        {/* Image */}
+                        <div className="absolute inset-0 w-full h-full">
+                          <Image
+                            src={item.image || "/placeholder.svg"}
+                            alt={item.title}
+                            width={500}
+                            height={500}
+                            className="w-full h-full object-cover transition-all duration-300"
+                            style={{
+                              filter:
+                                isHovered === item.id
+                                  ? "brightness(0.7)"
+                                  : "brightness(1)"
+                            }}
+                          />
+                        </div>
 
-        <Carousel
-          className="w-full max-w-[1300px] mx-auto relative z-10" // Ensure carousel stays above the background image
-          opts={{
-            align: "start",
-            loop: true // Enable infinite scroll
-          }}
-          setApi={(api) => setEmblaRef(api ?? null)}
-        >
-          <div className="text-center pb-10">
-            <h1 className="text-white text-6xl playfair font-extrabold">
-              Travel Experiences
-            </h1>
-            <p className="text-white montserrat mt-2 font-light">
-              Curated Journeys, Destinations & Festivals to immerse yourself
-              <br />
-              into a unique, unforgettable India
-            </p>
-            <h1 className="text-white mt-8 playfairDisplay text-3xl font-bold">
-              Come & Let India Touch Your Soul <br />& Awake Your Senses!
-            </h1>
-          </div>
-          <CarouselContent className="-ml-4">
-            {items.map((item: ExperienceItem) => (
-              <CarouselItem
-                key={item.id}
-                className="pl-4 md:basis-1/2 lg:basis-1/3"
-              >
-                <div className="p-1">
-                  <Card
-                    className="overflow-hidden rounded-none border-none"
-                    onMouseEnter={() => setIsHovered(item.id)}
-                    onMouseLeave={() => setIsHovered(null)}
-                  >
-                    <CardContent className="relative p-0 h-[460px]">
-                      {/* Image */}
-                      <div className="absolute inset-0 w-full h-full">
-                        <Image
-                          src={item.image || "/placeholder.svg"}
-                          alt={item.title}
-                          width={500}
-                          height={500}
-                          className="w-full h-full object-cover transition-all duration-300"
+                        {/* Overlay with title and icon when not hovered */}
+                        <div
+                          className="absolute inset-0 flex flex-col justify-center playfair items-center p-6 text-white transition-opacity duration-300"
                           style={{
-                            filter:
-                              isHovered === item.id
-                                ? "brightness(0.7)"
-                                : "brightness(1)"
+                            opacity: isHovered === item.id ? 0 : 1
                           }}
-                        />
-                      </div>
-
-                      {/* Overlay with title and icon when not hovered */}
-                      <div
-                        className="absolute inset-0 flex flex-col justify-center playfair items-center p-6 text-white transition-opacity duration-300"
-                        style={{
-                          opacity: isHovered === item.id ? 0 : 1
-                        }}
-                      >
-                        <div className="text-white text-4xl mb-2">
-                          {item.icon}
+                        >
+                          <div className="text-white text-4xl mb-2">
+                            {item.icon}
+                          </div>
+                          <h3 className="text-3xl font-bold text-center">
+                            {item.title}
+                          </h3>
                         </div>
-                        <h3 className="text-3xl font-bold text-center">
-                          {item.title}
-                        </h3>
-                      </div>
 
-                      {/* Content that appears on hover */}
-                      <div
-                        className="absolute inset-0 flex flex-col justify-center items-center p-6 text-white transition-opacity duration-300"
-                        style={{
-                          opacity: isHovered === item.id ? 1 : 0
-                        }}
-                      >
-                        <div className="text-white text-4xl mb-2">
-                          {item.icon}
+                        {/* Content that appears on hover */}
+                        <div
+                          className="absolute inset-0 flex flex-col justify-center items-center p-6 text-white transition-opacity duration-300"
+                          style={{
+                            opacity: isHovered === item.id ? 1 : 0
+                          }}
+                        >
+                          <div className="text-white text-4xl mb-2">
+                            {item.icon}
+                          </div>
+                          <h3 className="text-3xl font-bold mb-2 playfair">
+                            {item.title}
+                          </h3>
+                          <p className="text-sm text-center">
+                            {item.description}
+                          </p>
                         </div>
-                        <h3 className="text-3xl font-bold mb-2 playfair">
-                          {item.title}
-                        </h3>
-                        <p className="text-sm text-center">
-                          {item.description}
-                        </p>
-                      </div>
-                    </CardContent>
-                  </Card>
-                </div>
-              </CarouselItem>
-            ))}
-          </CarouselContent>
-        </Carousel>
+                      </CardContent>
+                    </Card>
+                  </div>
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+          </Carousel>
+        </div>
       </div>
     </>
   );

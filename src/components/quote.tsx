@@ -4,8 +4,8 @@ import { FaQuoteRight } from "react-icons/fa";
 const Quote = () => {
   return (
     <div className="relative p-10 md:p-20 lg:p-40">
-        <FaQuoteLeft size={80} className="text-yellow-300 top-[140px] left-[120px] absolute z-[20]" />
-        <FaQuoteRight size={80} className="text-yellow-300 bottom-[140px] right-[120px] absolute z-[20]" />
+        <FaQuoteLeft size={80} className="text-yellow-300 lg:top-[140px] left-[10px] top-[10px] lg:left-[120px] absolute z-[20]" />
+        <FaQuoteRight size={80} className="text-yellow-300 lg:bottom-[140px] right-[10px] bottom-[10px] lg:right-[120px] absolute z-[20]" />
       <div
         className="relative rounded-3xl w-full h-auto md:h-[500px] flex justify-center items-center flex-col gap-6 md:gap-10 p-8 md:p-12 overflow-hidden"
         style={{

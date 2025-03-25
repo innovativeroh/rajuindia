@@ -8,8 +8,8 @@ import { BsArrowRight } from "react-icons/bs";
 const journeys = () => {
   return (
     <>
-      <div className="pt-40 pb-20 max-w-[1200px] m-auto">
-        <div className="flex flex-wrap justify-between gap-40 items-center">
+      <div className="pt-10 lg:pt-40 pb-20 max-w-[1200px] m-auto">
+        <div className="flex flex-wrap justify-between gap-20 lg:gap-40 flex-col lg:flex-row items-center p-10">
           <div className="flex-[5] relative">
             <Image
               src={TailorMade}
@@ -52,16 +52,18 @@ const journeys = () => {
           </div>
         </div>
       </div>
-      <div className="py-10 max-w-[1200px] m-auto">
-        <div className="flex flex-wrap justify-between gap-40 items-center">
+      <div className="lg:pt-40 pb-20 max-w-[1200px] m-auto">
+        <div className="flex flex-wrap justify-between gap-20 lg:gap-40 flex-col lg:flex-row items-center p-10">
           <div className="flex-[5]">
             <h1 className="playfairDisplay text-5xl font-bold text-pink-950">
               Signature & Magical Honeymoons
             </h1>
             <p className="montserrat mt-8 text-justify font-light">
-              Luxury honeymoons for every type of couples: <br /><br />Decor aficionados,
-              luxury connoisseurs, wildlife lovers, fitness enthusiasts, city
-              slickers, tea lovers, snow aficionados or heritage passionates.
+              Luxury honeymoons for every type of couples: <br />
+              <br />
+              Decor aficionados, luxury connoisseurs, wildlife lovers, fitness
+              enthusiasts, city slickers, tea lovers, snow aficionados or
+              heritage passionates.
             </p>
             <p className="montserrat mt-8 text-xl text-justify font-semibold text-pink-800">
               Be Our Guest!
@@ -73,7 +75,7 @@ const journeys = () => {
               alt="Tailor Made Journey"
               width={500}
               className="rounded-xl m-auto"
-            />  
+            />
           </div>
         </div>
       </div>
