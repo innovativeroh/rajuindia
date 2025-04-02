@@ -34,12 +34,27 @@ const DreamJourneySection: React.FC<unknown> = () => {
   const [animateBackground, setAnimateBackground] = useState(0);
   const [currentImage, setCurrentImage] = useState(0);
   const [tripLength, setTripLength] = useState(14);
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    country: "",
+    phone: "",
+    guests: "",
+    tripType: "",
+    festival: "",
+    places: "",
+    travelMonth: "",
+    travelStyle: "",
+    specifics: "",
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<string | null>(null);
 
   const sliderImages = [
-    "https://images.unsplash.com/photo-1587295656906-b06dca8f2340?q=80&w=1932&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    "https://images.unsplash.com/photo-1622225641765-8c8ef0dcb678?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    "https://images.unsplash.com/photo-1582298046881-566557ca92b6?q=80&w=1970&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    "https://images.unsplash.com/photo-1615473787506-24ca223bf0e1?q=80&w=2154&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "https://images.unsplash.com/photo-1472214103451-9374bd1c798e",
+    "https://images.unsplash.com/photo-1501785888041-af3ef285b470",
+    "https://images.unsplash.com/photo-1469474968028-5663bfa1b212",
+    "https://images.unsplash.com/photo-1508739773434-c26b3d09e071",
   ];
 
   useEffect(() => {
@@ -78,10 +93,62 @@ const DreamJourneySection: React.FC<unknown> = () => {
     "Other",
   ];
 
+  const handleInputChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    const { id, value } = e.target;
+    setFormData((prev) => ({ ...prev, [id]: value }));
+  };
+
+  const handleSelectChange = (id: string, value: string) => {
+    setFormData((prev) => ({ ...prev, [id]: value }));
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setSubmitStatus(null);
+
+    try {
+      const response = await fetch("/api/send-email", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ ...formData, tripLength }),
+      });
+
+      if (response.ok) {
+        setSubmitStatus("Form submitted successfully! Check your email.");
+        setFormData({
+          name: "",
+          email: "",
+          country: "",
+          phone: "",
+          guests: "",
+          tripType: "",
+          festival: "",
+          places: "",
+          travelMonth: "",
+          travelStyle: "",
+          specifics: "",
+        });
+        setTripLength(14);
+      } else {
+        setSubmitStatus("Failed to submit the form. Please try again.");
+      }
+    } catch (error) {
+      setSubmitStatus("An error occurred. Please try again later.");
+      console.log(error);
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   return (
     <>
       <Navbar />
-      <main className="relative overflow-hidden mt-20">
+      <main className="relative overflow-hidden mt-10">
         <div
           className="absolute inset-0 z-0"
           style={{
@@ -96,12 +163,12 @@ const DreamJourneySection: React.FC<unknown> = () => {
           <div className="absolute top-60 right-40 w-40 h-40 rounded-full bg-purple-200 opacity-10 blur-3xl"></div>
         </div>
 
-        <div className="container mx-auto px-4 py-16 relative z-10 ">
+        <div className="container mx-auto px-4 py-16 relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="max-w-4xl mx-auto text-center mb-16 bg-white"
+            className="max-w-4xl mx-auto text-center mb-16"
           >
             <h1 className="text-3xl md:text-4xl font-extrabold playfair bg-gradient-to-r from-blue-800 via-blue-900 to-blue-950 bg-clip-text text-transparent mb-6">
               Let us know about your dream or need.
@@ -113,8 +180,6 @@ const DreamJourneySection: React.FC<unknown> = () => {
           </motion.div>
 
           <div className="max-w-7xl mx-auto mb-24">
-            {" "}
-            {/* Widened from max-w-6xl to max-w-7xl */}
             <div className="relative">
               <motion.div
                 className="absolute -top-16 -right-12 w-24 h-24 rounded-xl bg-gradient-to-br from-blue-800 via-blue-900 to-blue-950 shadow-xl rotate-12 opacity-80 z-0 hidden md:block"
@@ -154,23 +219,33 @@ const DreamJourneySection: React.FC<unknown> = () => {
                   <CardContent className="p-0">
                     <div className="grid md:grid-cols-2">
                       <div className="p-8 md:p-12">
-                        <form className="space-y-8">
+                        <div className="mb-8">
+                          <h2 className="text-2xl font-bold playfair text-gray-800 mb-2">
+                            Plan Your Dream Journey
+                          </h2>
+                          <p className="text-gray-600 montserrat">
+                            Fill out the details below to get started.
+                          </p>
+                        </div>
+
+                        <form className="space-y-8" onSubmit={handleSubmit}>
                           {/* Personal Information */}
                           <div className="space-y-4">
                             <h3 className="text-lg font-semibold text-gray-800">
                               Personal Information
                             </h3>
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                              {" "}
-                              {/* Side-by-side inputs */}
                               <div className="space-y-2">
                                 <Label htmlFor="name" className="text-gray-700">
                                   Your Name
                                 </Label>
                                 <Input
                                   id="name"
+                                  value={formData.name}
+                                  onChange={handleInputChange}
                                   placeholder="Enter your full name"
                                   className="border-gray-300 focus:border-blue-500 focus:ring-blue-500"
+                                  required
                                 />
                               </div>
                               <div className="space-y-2">
@@ -183,8 +258,11 @@ const DreamJourneySection: React.FC<unknown> = () => {
                                 <Input
                                   id="email"
                                   type="email"
+                                  value={formData.email}
+                                  onChange={handleInputChange}
                                   placeholder="you@example.com"
                                   className="border-gray-300 focus:border-blue-500 focus:ring-blue-500"
+                                  required
                                 />
                               </div>
                               <div className="space-y-2">
@@ -194,7 +272,12 @@ const DreamJourneySection: React.FC<unknown> = () => {
                                 >
                                   Select Your Country
                                 </Label>
-                                <Select>
+                                <Select
+                                  onValueChange={(value) =>
+                                    handleSelectChange("country", value)
+                                  }
+                                  value={formData.country}
+                                >
                                   <SelectTrigger className="border-gray-300 focus:border-blue-500 focus:ring-blue-500">
                                     <SelectValue placeholder="Select your country" />
                                   </SelectTrigger>
@@ -216,6 +299,8 @@ const DreamJourneySection: React.FC<unknown> = () => {
                                 </Label>
                                 <Input
                                   id="phone"
+                                  value={formData.phone}
+                                  onChange={handleInputChange}
                                   placeholder="+1 (555) 000-0000"
                                   className="border-gray-300 focus:border-blue-500 focus:ring-blue-500"
                                 />
@@ -229,8 +314,6 @@ const DreamJourneySection: React.FC<unknown> = () => {
                               Trip Details
                             </h3>
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                              {" "}
-                              {/* Side-by-side inputs */}
                               <div className="space-y-2">
                                 <Label
                                   htmlFor="guests"
@@ -243,6 +326,8 @@ const DreamJourneySection: React.FC<unknown> = () => {
                                     id="guests"
                                     type="number"
                                     min="1"
+                                    value={formData.guests}
+                                    onChange={handleInputChange}
                                     placeholder="2"
                                     className="rounded-r-none border-gray-300 focus:border-blue-500 focus:ring-blue-500"
                                   />
@@ -261,7 +346,12 @@ const DreamJourneySection: React.FC<unknown> = () => {
                                 >
                                   How Do You Define Your Trip
                                 </Label>
-                                <Select>
+                                <Select
+                                  onValueChange={(value) =>
+                                    handleSelectChange("tripType", value)
+                                  }
+                                  value={formData.tripType}
+                                >
                                   <SelectTrigger className="border-gray-300 focus:border-blue-500 focus:ring-blue-500">
                                     <SelectValue placeholder="Select trip type" />
                                   </SelectTrigger>
@@ -282,15 +372,18 @@ const DreamJourneySection: React.FC<unknown> = () => {
                                 </Select>
                               </div>
                               <div className="space-y-2 col-span-2">
-                                {" "}
-                                {/* Full width for festival */}
                                 <Label
                                   htmlFor="festival"
                                   className="text-gray-700"
                                 >
                                   Interested in an Indian Festival?
                                 </Label>
-                                <Select>
+                                <Select
+                                  onValueChange={(value) =>
+                                    handleSelectChange("festival", value)
+                                  }
+                                  value={formData.festival}
+                                >
                                   <SelectTrigger className="border-gray-300 focus:border-blue-500 focus:ring-blue-500">
                                     <SelectValue placeholder="Select an option" />
                                   </SelectTrigger>
@@ -328,14 +421,14 @@ const DreamJourneySection: React.FC<unknown> = () => {
                                 </Label>
                                 <Textarea
                                   id="places"
+                                  value={formData.places}
+                                  onChange={handleInputChange}
                                   placeholder="Describe the places you'd like to visit..."
                                   rows={4}
                                   className="border-gray-300 focus:border-blue-500 focus:ring-blue-500"
                                 />
                               </div>
                               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                {" "}
-                                {/* Side-by-side inputs */}
                                 <div className="space-y-2">
                                   <Label
                                     htmlFor="travelMonth"
@@ -346,6 +439,8 @@ const DreamJourneySection: React.FC<unknown> = () => {
                                   <Input
                                     id="travelMonth"
                                     type="month"
+                                    value={formData.travelMonth}
+                                    onChange={handleInputChange}
                                     className="border-gray-300 focus:border-blue-500 focus:ring-blue-500"
                                   />
                                 </div>
@@ -356,7 +451,12 @@ const DreamJourneySection: React.FC<unknown> = () => {
                                   >
                                     Desired Travel Style
                                   </Label>
-                                  <Select>
+                                  <Select
+                                    onValueChange={(value) =>
+                                      handleSelectChange("travelStyle", value)
+                                    }
+                                    value={formData.travelStyle}
+                                  >
                                     <SelectTrigger className="border-gray-300 focus:border-blue-500 focus:ring-blue-500">
                                       <SelectValue placeholder="Select travel style" />
                                     </SelectTrigger>
@@ -410,6 +510,8 @@ const DreamJourneySection: React.FC<unknown> = () => {
                               </Label>
                               <Textarea
                                 id="specifics"
+                                value={formData.specifics}
+                                onChange={handleInputChange}
                                 placeholder="Let us know any specific requirements..."
                                 rows={4}
                                 className="border-gray-300 focus:border-blue-500 focus:ring-blue-500"
@@ -419,10 +521,24 @@ const DreamJourneySection: React.FC<unknown> = () => {
 
                           <Button
                             type="submit"
+                            disabled={isSubmitting}
                             className="w-full bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white py-3 rounded-lg transition-all duration-300 shadow-md hover:shadow-lg"
                           >
-                            Start Planning My Journey
+                            {isSubmitting
+                              ? "Submitting..."
+                              : "Start Planning My Journey"}
                           </Button>
+                          {submitStatus && (
+                            <p
+                              className={`text-center mt-4 ${
+                                submitStatus.includes("success")
+                                  ? "text-green-600"
+                                  : "text-red-600"
+                              }`}
+                            >
+                              {submitStatus}
+                            </p>
+                          )}
                         </form>
                       </div>
 
