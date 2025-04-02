@@ -98,7 +98,7 @@ export default function Navbar() {
             {/* CTA Button */}
             <div className="hidden md:block">
               <Link
-                href="#"
+                href="/plan"
                 className="bg-yellow-500 hover:bg-yellow-600 transition-all py-2.5 px-5 font-bold flex items-center gap-2 italic rounded-lg text-white text-sm shadow-md hover:shadow-lg transform hover:-translate-y-0.5"
               >
                 Plan Journey <ArrowRight size={15} />
@@ -152,7 +152,7 @@ export default function Navbar() {
             ))}
             <div className="pt-6 mt-2">
               <Link
-                href="#"
+                href="/plan"
                 className="bg-yellow-500 hover:bg-yellow-600 transition-all py-3 px-4 font-bold flex items-center justify-center gap-2 italic rounded-lg text-white text-sm w-full"
                 onClick={() => setIsMenuOpen(false)}
               >

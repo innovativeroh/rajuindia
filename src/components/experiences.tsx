@@ -5,7 +5,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import {
   Carousel,
   CarouselContent,
-  CarouselItem
+  CarouselItem,
 } from "@/components/ui/carousel";
 import type { EmblaCarouselType } from "embla-carousel";
 import Image from "next/image";
@@ -36,7 +36,7 @@ const items: ExperienceItem[] = [
     title: "Soulful Rajasthan",
     description:
       "Mysterious, royal, colourful, mystical and unique…  Inhabited by hundreds of different tribes boasting their own peculiar style of clothing. Camels in Thar Desert, women in multi color saris, forts, palaces and overnight safaris under the stars, are some of the many ways for your soul, to vibrate in Rajasthan.",
-    icon: <GiCamel />
+    icon: <GiCamel />,
   },
   {
     id: 2,
@@ -45,7 +45,7 @@ const items: ExperienceItem[] = [
     title: "Curated Journeys",
     description:
       "Indian culture is an amalgamation of many civilizations, people and traditions, several millennia old. Its thousand tongues, music, architecture, food and customs are diverse from place to place within the country. Declared by UNESCO “Intangible Cultural Heritage of Humanity”. Come and live with us a handpicked breathtaking experiences created for you.",
-    icon: <FaCakeCandles />
+    icon: <FaCakeCandles />,
   },
   {
     id: 3,
@@ -54,7 +54,7 @@ const items: ExperienceItem[] = [
     title: "Day Journeys",
     description:
       "Our day journeys are created and thought to give you a glimpse of its cultural heritage, ethnicity, historic monuments and spiritual aura. Experience Indias magic within a Day. ",
-    icon: <IoSunnyOutline />
+    icon: <IoSunnyOutline />,
   },
   {
     id: 4,
@@ -63,7 +63,7 @@ const items: ExperienceItem[] = [
     title: "Festivals",
     description:
       "India has seen most of the world religions in front of her eyes: Hinduism, Sikhism, Buddhism, and Jainism were born in her arms. Her spiritual sense emanates everywhere around her where life is revered and worshiped in mandirs (Hindu temples), mosques, gurudwaras, and churches. Divine beliefs, rituals and festivals are practiced along this magnificent land.",
-    icon: <GiFireworkRocket />
+    icon: <GiFireworkRocket />,
   },
   {
     id: 5,
@@ -72,7 +72,7 @@ const items: ExperienceItem[] = [
     title: "Destinations",
     description:
       "India is home of countless and extraordinary destinations to be discovered and captured in your memories. Each region has its own charm, beauty and singularity. Come and loose yourself in its charismatic magic. ",
-    icon: <GiIndiaGate />
+    icon: <GiIndiaGate />,
   },
   {
     id: 6,
@@ -81,8 +81,8 @@ const items: ExperienceItem[] = [
     title: "Student Journeys",
     description:
       "With Incredible Real India your options are limitless. We will handle all the logistics so you can focus on inspiring your students and gearing them up for the road. With proper planning and execution, you can turn any field trip into a forever memory. Make India your stage.",
-    icon: <IoBookOutline />
-  }
+    icon: <IoBookOutline />,
+  },
 ];
 
 export default function Experiences(): JSX.Element {
@@ -120,7 +120,7 @@ export default function Experiences(): JSX.Element {
             className="w-full max-w-[1300px] mx-auto relative z-10" // Ensure carousel stays above the background image
             opts={{
               align: "start",
-              loop: true // Enable infinite scroll
+              loop: true, // Enable infinite scroll
             }}
             setApi={(api) => setEmblaRef(api ?? null)}
           >
@@ -161,7 +161,7 @@ export default function Experiences(): JSX.Element {
                               filter:
                                 isHovered === item.id
                                   ? "brightness(0.7)"
-                                  : "brightness(1)"
+                                  : "brightness(1)",
                             }}
                           />
                         </div>
@@ -170,7 +170,7 @@ export default function Experiences(): JSX.Element {
                         <div
                           className="absolute inset-0 flex flex-col justify-center playfair items-center p-6 text-white transition-opacity duration-300"
                           style={{
-                            opacity: isHovered === item.id ? 0 : 1
+                            opacity: isHovered === item.id ? 0 : 1,
                           }}
                         >
                           <div className="text-white text-4xl mb-2">
@@ -185,7 +185,7 @@ export default function Experiences(): JSX.Element {
                         <div
                           className="absolute inset-0 flex flex-col justify-center items-center p-6 text-white transition-opacity duration-300"
                           style={{
-                            opacity: isHovered === item.id ? 1 : 0
+                            opacity: isHovered === item.id ? 1 : 0,
                           }}
                         >
                           <div className="text-white text-4xl mb-2">
