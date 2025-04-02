@@ -17,19 +17,31 @@ export async function POST(req: Request) {
     specifics,
   } = await req.json();
 
-  // Configure Nodemailer transporter (e.g., using Gmail SMTP)
+  // Log environment variables to debug
+  console.log("EMAIL_USER:", process.env.EMAIL_USER);
+  console.log("EMAIL_PASS:", process.env.EMAIL_PASS);
+
+  // Check if credentials are missing
+  if (!process.env.EMAIL_USER || !process.env.EMAIL_PASS) {
+    return NextResponse.json(
+      { message: "Missing email credentials" },
+      { status: 500 }
+    );
+  }
+
+  // Configure Nodemailer transporter
   const transporter = nodemailer.createTransport({
     service: "gmail",
     auth: {
-      user: process.env.EMAIL_USER, // Your Gmail address
-      pass: process.env.EMAIL_PASS, // Your Gmail App Password
+      user: process.env.EMAIL_USER,
+      pass: process.env.EMAIL_PASS,
     },
   });
 
   // Email content
   const mailOptions = {
     from: process.env.EMAIL_USER,
-    to: "thetechsolaceco@gmail.com", // Replace with your email address
+    to: "your-email@example.com", // Replace with your email address
     subject: `New Dream Journey Submission from ${name}`,
     text: `
       Name: ${name}
