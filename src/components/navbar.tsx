@@ -10,8 +10,7 @@ import InvertLogo from "@/../public/img/invlogo.png"
 import { MdOutlineArrowRight } from "react-icons/md"
 
 const navLinks = [
-  { name: "About", href: "/" },
-  { name: "Travel Experiences", href: "/destinations" },
+  { name: "About", href: "/about" },
   { name: "Testimonials", href: "/#testimonials" },
   { name: "Blog", href: "/blogs" },
   { name: "Contact", href: "/contact" },
